@@ -1,0 +1,32 @@
+#!/bin/sh
+# main          Main wrapper for main.js
+#
+# Read the relevant documentation in `README.md`
+
+echo "Enter the first equation of the system."
+printf "a? "
+read eq1a
+printf "b? "
+read eq1b
+printf "c? "
+read eq1c
+
+echo "Enter the second equation of the system."
+printf "a? "
+read eq2a
+printf "b? "
+read eq2b
+printf "c? "
+read eq2c
+
+echo
+
+magicregex="^const nightmareMatrix"
+sed "/${magicregex}/s/[0-9]\\+/${eq1a}/1;
+/${magicregex}/s/[0-9]\\+/${eq1b}/2;
+/${magicregex}/s/[0-9]\\+/${eq2a}/3;
+/${magicregex}/s/[0-9]\\+/${eq2b}/4;
+/${magicregex}/s/[0-9]\\+/${eq1c}/5;
+/${magicregex}/s/[0-9]\\+/${eq2c}/6" main.js | node
+
+# vim: filetype=sh wrap tw=80
